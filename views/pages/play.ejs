@@ -1,0 +1,21 @@
+<div>
+    <% for (i in user.plat_levels_unlocked){%>
+    <button onclick="select('<%=  user.plat_levels_unlocked[i] %>')"><%=  user.plat_levels_unlocked[i] %></button>
+    <% } %>
+</div>
+
+<script>
+    function select(id){
+        window.location.href = "/play/select/" + id;
+    }
+</script>
+
+<style>
+    .arrow-up {
+        width: 0;
+        height: 0;
+        border-left: 25px solid transparent;
+        border-right: 25px solid transparent;
+        border-bottom: 25px solid black;
+    }
+</style>

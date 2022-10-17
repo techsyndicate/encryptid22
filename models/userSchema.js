@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema({
     profile_completed: reqBoolFalse,
     plat_levels_unlocked: [reqStringFalse],
     plat_levels_completed: [reqStringFalse],
-    play_current_level: { type: String, required: true, default: "1" },
+    play_current_level: reqStringFalse,
     date: {
         type: String,
         default: dateStringWithTime

@@ -14,6 +14,8 @@ async function initialize(passport) {
             const newUser = await User.create({
                 ...profile
             });
+            newUser.plat_levels_unlocked = ["1"];
+            await newUser.save();
             return cb(null, newUser);
         }
     }

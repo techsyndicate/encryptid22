@@ -3,6 +3,38 @@
     <h2><%= level.maintext%> </h2>
     <% if (typeof level.image != "undefined") {%>
     <img src="<%=level.image %> ">
-    <% } %> 
+    <% } %>
     <!-- <%= level.sourceCodeHint %> -->
+    <div class="field">
+        <label for="maintext">try your luck</label>
+        <input type="text" id="maintext" name="maintext" placeholder="this is a test answer">
+    </div>
+    <button onclick="submit()">submit</button>
 </div>
+<script>
+    var notyf = new Notyf();
+    function submit() {
+        var maintext = document.getElementById("maintext").value;
+        var data = {
+            answer: maintext
+        };
+        fetch('/play/submit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then(function (response) {
+            return response.json();
+        }).then(function (data) {
+            if (data.success) {
+                notyf.success(data.message);
+                setTimeout(function () {
+                    window.location.href = "/play";
+                }, 1000);
+            } else {
+                notyf.error(data.message);
+            }
+        });
+    }
+</script>

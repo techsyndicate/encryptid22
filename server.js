@@ -5,9 +5,10 @@ require('dotenv').config()
 const express = require('express'),
     app = express(),
     mongoose = require('mongoose'),
-    session = require("express-session"),
+    session = require("cookie-session"),
     path = require('path'),
     cookieParser = require("cookie-parser"),
+    expressLayouts = require('express-ejs-layouts'),
     passport = require('passport');
 
 const port = process.env.PORT || 5100,
@@ -17,7 +18,6 @@ const port = process.env.PORT || 5100,
     playRouter = require('./routers/play'),
     adminRouter = require('./routers/admin'),
     authRouter = require("./routers/auth");
-
 
 if (process.env.NODE_ENV === 'production') {
     app.enable('trust proxy');
@@ -61,7 +61,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.use(cookieParser(process.env.SECRET));
-
+app.use(expressLayouts);
 passport_init(passport);
 
 //initializing passport
@@ -72,7 +72,7 @@ app.use(bloatRouter);
 app.use('/', landingRouter);
 app.use("/auth", authRouter)
 app.use('/play', playRouter)
-// app.use('/admin', adminRouter)
+app.use('/admin', adminRouter)
 // app.use('/question', questionRouter)
 // app.use('/ans', answerRouter)
 // app.use('/practise-back', practiseRouter)

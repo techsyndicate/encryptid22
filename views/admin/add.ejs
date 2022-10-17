@@ -1,0 +1,52 @@
+<div>
+    <div class="field">
+        <label for="levelNumber">levelNumber</label>
+        <input type="number" id="levelNumber" name="levelNumber" placeholder="1">
+    </div>
+    <div class="field">
+        <label for="maintext">maintext</label>
+        <input type="text" id="maintext" name="maintext" placeholder="this is a pro level">
+    </div>
+    <div class="field">
+        <label for="image">image link</label>
+        <input type="text" id="image" name="image" placeholder="this is a not required link">
+    </div>
+    <div class="field">
+        <label for="sourceCodeHint">sourceCodeHint</label>
+        <input type="text" id="sourceCodeHint" name="sourceCodeHint" placeholder="this is a not required hint">
+    </div>
+
+    <input type="button" value="proceed" onclick="submit();" class="signup-button" />
+
+</div>
+
+<script>
+    var notyf = new Notyf();
+    function submit() {
+        var levelNumber = document.getElementById("levelNumber").value;
+        var maintext = document.getElementById("maintext").value;
+        var image = document.getElementById("image").value;
+        var sourceCodeHint = document.getElementById("sourceCodeHint").value;
+        var data = {
+            levelNumber: levelNumber,
+            maintext: maintext,
+            image: image,
+            sourceCodeHint: sourceCodeHint
+        };
+        fetch('/admin/add', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then(function (response) {
+            return response.json();
+        }).then(function (data) {
+            if (data.success) {
+                notyf.success(data.message);
+            } else {
+                notyf.error(data.message);
+            }
+        });
+    }
+</script>

@@ -2,7 +2,7 @@ function checkAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
         return next();
     }
-    res.redirect("/login");
+    res.redirect("/auth/discord");
 }
 
 function checkNotAuthenticated(req, res, next) {
@@ -13,6 +13,7 @@ function checkNotAuthenticated(req, res, next) {
 }
 
 function checkAdmin(req, res, next) {
+    console.log(req.isAuthenticated());
     if (req.isAuthenticated() && req.user.admin === true) {
         return next();
     }
