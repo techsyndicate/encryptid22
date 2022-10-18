@@ -15,6 +15,11 @@
         <label for="sourceCodeHint">sourceCodeHint</label>
         <input type="text" id="sourceCodeHint" name="sourceCodeHint" placeholder="this is a not required hint">
     </div>
+    <div class="field">
+        <label for="hintHidden">hintHidden</label>
+        <input type="text" id="hintHidden" name="hintHidden" placeholder="this is a not required hint">
+    </div>
+
 
     <input type="button" value="proceed" onclick="submit();" class="signup-button" />
 
@@ -22,17 +27,22 @@
 
 <script>
     var notyf = new Notyf();
+
     function submit() {
         var levelNumber = document.getElementById("levelNumber").value;
         var maintext = document.getElementById("maintext").value;
         var image = document.getElementById("image").value;
         var sourceCodeHint = document.getElementById("sourceCodeHint").value;
+        var hintHidden = document.getElementById("hintHidden").value;
+
         var data = {
             levelNumber: levelNumber,
             maintext: maintext,
             image: image,
-            sourceCodeHint: sourceCodeHint
+            sourceCodeHint: sourceCodeHint, 
+            hintHidden: hintHidden
         };
+        
         fetch('/admin/add', {
             method: 'POST',
             headers: {

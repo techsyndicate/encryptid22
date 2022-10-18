@@ -12,10 +12,16 @@
             <button onclick="submit()">Submit</button>
         </div>
         <br><br><br><br>
+        <% if (level.hintHidden) {%>
+        <h2 class="level-text hidden"><%= level.hintHidden %> </h2>
+        <% } %> 
     </div>
 </div>
 
 <style>
+    .hidden {
+        color: #000 !important;
+    }
     .field {
         margin-top: 2em;
         display: flex;
