@@ -82,9 +82,11 @@ app.use('/play', playRouter)
 app.use('/admin', adminRouter)
 app.use('/profile', profileRouter)
 app.use('/leaderboard', leaderboardRouter)
+
 app.get('/404', (req, res) => {
     res.render('404', { user: req.user });
 })
+
 app.get('/:id', (req, res, next) => {
     const id = req.params.id;
     const link = backlinks.find(link => link.link === id);

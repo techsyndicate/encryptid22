@@ -17,6 +17,7 @@ const levelSchema = new mongoose.Schema({
     image: reqStringFalseDefEmpty,
     sourceCodeHint: reqStringFalse,
     answer: reqStringFalse,
+    hintHidden: reqStringFalse,
     date: {
         type: String,
         default: dateStringWithTime
