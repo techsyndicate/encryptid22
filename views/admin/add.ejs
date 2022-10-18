@@ -34,7 +34,7 @@
         var image = document.getElementById("image").value;
         var sourceCodeHint = document.getElementById("sourceCodeHint").value;
         var hintHidden = document.getElementById("hintHidden").value;
-        
+
         var data = {
             levelNumber: levelNumber,
             maintext: maintext,
@@ -42,6 +42,7 @@
             sourceCodeHint: sourceCodeHint, 
             hintHidden: hintHidden
         };
+        
         fetch('/admin/add', {
             method: 'POST',
             headers: {
