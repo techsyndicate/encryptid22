@@ -14,9 +14,7 @@ const reqStringFalseDefEmpty = { type: String, required: false, default: "" },
 const userSchema = new mongoose.Schema({
     plat_banned: reqBoolFalse,
     plat_name: reqStringFalse,
-    plat_username: reqStringFalseDefEmpty,
     plat_school: reqStringFalse,
-    profile_completed: reqBoolFalse,
     plat_levels_unlocked: [reqStringFalse],
     plat_levels_completed: [reqStringFalse],
     play_current_level: reqStringFalse,
@@ -24,8 +22,6 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: dateStringWithTime
     },
-    solvedQuestions: [reqStringFalseDefEmpty],
-    solvedAnswers: [reqStringFalseDefEmpty],
     admin: reqBoolFalse,
     id: reqStringFalseDefEmpty,
     username: reqStringFalseDefEmpty,

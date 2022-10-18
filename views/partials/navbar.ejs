@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <header class="navbar-container">
     <nav class="navbar">
-        <a href="/" class="nav-branding"><img width="80px" src="https://techsyndicate.us/assets/images/ts.png"></a>
+        <a href="/" class="nav-branding"><img width="80px" src="/ts.png"></a>
         <ul class="nav-menu">
             <% if (typeof user == "undefined"){ %>
             <li class="nav-item">
                 <a href="/leaderboard" class="nav-link">Leaderboard</a>
             </li>
-            <button onclick="button1()">Register</button>
-            <button onclick="button2()">Login</button>
+            <li class="nav-item">
+                <a href="/auth/discord" class="nav-link mobile">Login</a>
+            </li>
+            <button class="sign-button desktop" onclick="register()">Login</button>
             <%}else{%>
             <li class="nav-item">
                 <a href="/play" class="nav-link">Dashboard</a>
@@ -30,10 +32,6 @@
 </header>
 
 <style>
-    .sign-button-mobile {
-        display: none;
-    }
-
     .sign-button {
         background-color: #393E47;
         color: white;
@@ -43,14 +41,6 @@
         font-size: 18px;
         font-weight: 600;
         cursor: pointer;
-    }
-
-    .right-side-nav {
-        display: flex;
-        justify-content: space-between;
-        width: 30vw;
-        align-items: center;
-        margin-right: 30px;
     }
 
     .navbar-container {
@@ -67,7 +57,7 @@
     .nav-branding {
         text-decoration: none;
         font-weight: 500;
-        font-size: 14px;
+        font-size: 20px;
         color: #fff;
     }
 
@@ -100,7 +90,7 @@
     }
 
     .nav-link:hover {
-        color: dodgerblue;
+        color: #16e16e;
     }
 
     .hamburger {
@@ -118,47 +108,22 @@
         background-color: white;
     }
 
-    .search-input-div {
-        border: none;
-        border-radius: 10px;
-        background-color: white;
-        font-size: 1.2rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.35);
-    }
-
-    .search-input {
-        width: 250px;
-        height: 40px;
-        border: none;
-        border-radius: 10px;
-        background-color: white;
-        color: black;
-        font-size: 1.2rem;
-        padding-left: 20px;
-        transition: 0.3s;
-    }
-
-    .search-icon {
-        padding-right: 10px;
+    .mobile{
+        display: none;
     }
 
     @media(max-width:768px) {
-        .search-input-div {
+        .desktop {
             display: none;
         }
-
+        .mobile {
+            display: flex;
+        }
         .sign-button {
             display: none;
         }
 
         .hamburger {
-            display: block;
-        }
-
-        .sign-button-mobile {
             display: block;
         }
 
@@ -203,6 +168,10 @@
 </style>
 
 <script>
+    function register() {
+        window.location.href = "/auth/discord";
+    }
+
     const hamburger = document.querySelector(".hamburger");
     const navMenu = document.querySelector(".nav-menu");
     hamburger.addEventListener("click", () => {

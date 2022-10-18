@@ -17,6 +17,8 @@ const port = process.env.PORT || 5100,
     landingRouter = require('./routers/landing'),
     playRouter = require('./routers/play'),
     adminRouter = require('./routers/admin'),
+    profileRouter = require('./routers/profile'),
+    leaderboardRouter = require('./routers/leaderboard'),
     authRouter = require("./routers/auth");
 
 if (process.env.NODE_ENV === 'production') {
@@ -73,12 +75,8 @@ app.use('/', landingRouter);
 app.use("/auth", authRouter)
 app.use('/play', playRouter)
 app.use('/admin', adminRouter)
-// app.use('/question', questionRouter)
-// app.use('/ans', answerRouter)
-// app.use('/practise-back', practiseRouter)
-// app.use('/event-back', event_router)
-// app.use('/discord-back', discord_router)
-// app.use('/email-back', email_router)
+app.use('/profile', profileRouter)
+app.use('/leaderboard', leaderboardRouter)
 
 // app.use((err, req, res, next) => {
 //     ReportCrash(err.stack.toString())

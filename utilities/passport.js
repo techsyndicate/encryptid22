@@ -9,6 +9,9 @@ async function initialize(passport) {
     const authenticateUser = async (accessToken, refreshToken, profile, cb) => {
         const user = await User.findOne({ id: profile.id });
         if (user) {
+            user.update({
+                ...profile
+            })
             return cb(null, user);
         } else {
             const newUser = await User.create({

@@ -1,5 +1,8 @@
 function checkAuthenticated(req, res, next) {
-    if (req.isAuthenticated()) {
+    if (req.isAuthenticated() ) {
+        if ((req.user.plat_name === undefined || req.user.plat_school === undefined) && req.method !== 'POST') {
+            return res.render('pages/completeProfile', {user: req.user})
+        }
         return next();
     }
     res.redirect("/auth/discord");
