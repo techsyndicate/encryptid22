@@ -21,7 +21,7 @@
             <li class="nav-item">
                 <a href="/profile" class="nav-link">Profile</a>
             </li>
-            
+
         </ul>
         <div class="hamburger">
             <span class="bar"></span>
@@ -30,145 +30,7 @@
         </div>
     </nav>
 </header>
-
-<style>
-    nav{
-        padding: 10px;
-    }
-    .sign-button {
-        background-color: #393E47;
-        color: white;
-        border-radius: 5px;
-        width: 140px;
-        height: 50px;
-        font-size: 18px;
-        font-weight: 600;
-        cursor: pointer;
-    }
-
-    .navbar-container {
-        color: #fff;
-        background-color: #000;
-    }
-
-    .nav-item {
-        list-style: none;
-        color: #fff;
-    }
-
-    .nav-link,
-    .nav-branding {
-        text-decoration: none;
-        font-weight: 500;
-        font-size: 20px;
-        color: #fff;
-    }
-
-    .nav-branding {
-        margin-right: 3vw;
-    }
-
-    .navbar {
-        min-height: 90px;
-        display: flex;
-        align-items: center;
-        padding: 0 24px;
-        justify-content: space-between;
-    }
-
-    .nav-branding {
-        font-size: 2rem;
-    }
-
-    .nav-menu {
-        /* margin-left: 2.5vw; */
-        display: flex;
-        align-items: center;
-        gap: 3vw;
-        z-index: 1;
-    }
-
-    .nav-link {
-        transition: 0.3s ease-out;
-    }
-
-    .nav-link:hover {
-        color: #16e16e;
-    }
-
-    .hamburger {
-        display: none;
-        cursor: pointer;
-    }
-
-    .bar {
-        display: block;
-        width: 25px;
-        height: 3px;
-        margin: 5px auto;
-        -webkit-transition: all 0.3s ease;
-        transition: all 0.3s ease;
-        background-color: white;
-    }
-
-    .mobile{
-        display: none;
-    }
-
-    @media(max-width:768px) {
-        .desktop {
-            display: none;
-        }
-        .mobile {
-            display: flex;
-        }
-        .sign-button {
-            display: none;
-        }
-
-        .hamburger {
-            display: block;
-        }
-
-        .hamburger.active .bar:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active .bar:nth-child(1) {
-            transform: translateY(8px) rotate(45deg);
-        }
-
-        .hamburger.active .bar:nth-child(3) {
-            transform: translateY(-8px) rotate(-45deg);
-        }
-
-        .nav-menu {
-            position: fixed;
-            left: -100%;
-            top: 90px;
-            gap: 0;
-            height: 1vh;
-            flex-direction: column;
-            background-color: #000;
-            width: 100%;
-            height: calc(100vh - 90px);
-            text-align: center;
-            transition: 0.3s;
-        }
-
-        .nav-item {
-            margin: 2vh;
-        }
-
-        .nav-menu.active {
-            left: 0;
-        }
-
-        .navbar {
-            justify-content: space-between;
-        }
-    }
-</style>
+-->
 
 <script>
     function register() {
@@ -185,4 +47,32 @@
         hamburger.classList.remove("active");
         navMenu.classList.remove("active");
     }))
-</script> -->
+</script> 
+<div class="navbar">
+    <a href="/" class="nav-branding"><img class="logo" src="/ts.png"></a>
+    <ul class="nav-menu">
+        <% if (typeof user == "undefined"){ %>
+            <li class="nav-item">
+                <a href="/leaderboard" class="nav-link">Leaderboard</a>
+            </li>
+            <li class="nav-item">
+                <a href="/auth/discord" class="nav-link ">Login</a>
+            </li>
+        <%}else{%>
+            <li class="nav-item">
+                <a href="/play" class="nav-link">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a href="/leaderboard" class="nav-link">Leaderboard</a>
+            </li>
+            <li class="nav-item">
+                <a href="/profile" class="nav-link">Profile</a>
+            </li>
+        <% } %>
+    </ul>
+    <div class="hamburger">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </div>
+</div>
