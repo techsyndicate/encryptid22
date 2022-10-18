@@ -8,7 +8,7 @@ const express = require('express'),
 bloat_router.use(express.static('public'));
 
 //cors middleware
-const whitelist = ['ts-prog1.herokuapp.com', 'localhost', 'netlify.app', 'techsyndicate.us'];
+const whitelist = ['encryptid-secret-880388652.herokuapp.com', 'localhost', 'techsyndicate.us'];
 const corsOptions = {
     origin: (origin, callback) => {
         if (origin) {
