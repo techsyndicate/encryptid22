@@ -64,7 +64,11 @@ if (process.env.NODE_ENV === 'production') {
 
 app.use(cookieParser(process.env.SECRET));
 app.use(expressLayouts);
-passport_init(passport);
+
+app.get('*', (req, res, next) => {
+    passport_init(passport, req);
+    next();
+})
 
 //initializing passport
 app.use(passport.initialize());

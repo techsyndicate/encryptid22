@@ -5,7 +5,8 @@ const DiscordStrategy = require('passport-discord').Strategy,
 
 const scopes = ['identify', 'email', 'guilds', 'guilds.join'];
 
-async function initialize(passport) {
+async function initialize(passport, req) {
+    
     const authenticateUser = async (accessToken, refreshToken, profile, cb) => {
         const user = await User.findOne({ id: profile.id });
         if (user) {
@@ -26,7 +27,7 @@ async function initialize(passport) {
     await passport.use(new DiscordStrategy({
         clientID: process.env.CLIENT_ID,
         clientSecret: process.env.CLIENT_SECRET,
-        callbackURL: 'http://localhost:5100/auth/discord/callback',
+        callbackURL: req.protocol + '://' + req.get('host') + '/auth/discord/callback',
         scope: scopes
     }, authenticateUser))
 
