@@ -13,6 +13,7 @@ const express = require('express'),
 
 const port = process.env.PORT || 5100,
     passport_init = require('./utilities/passport'),
+    backlinks = require('./utilities/backlinks.json'),
     bloatRouter = require('./routers/bloat'),
     landingRouter = require('./routers/landing'),
     playRouter = require('./routers/play'),
@@ -81,6 +82,24 @@ app.use('/play', playRouter)
 app.use('/admin', adminRouter)
 app.use('/profile', profileRouter)
 app.use('/leaderboard', leaderboardRouter)
+app.get('/404', (req, res) => {
+    res.render('404', { user: req.user });
+})
+app.get('/:id', (req, res, next) => {
+    const id = req.params.id;
+    const link = backlinks.find(link => link.link === id);
+    if (link) {
+        if (link.backlink) {
+            return res.redirect(link.backlink);
+        }
+        if (link.text) {
+            return res.render('hiddentext', { link });
+        }
+    }
+    else {
+        res.redirect('/404');
+    }
+});
 
 // app.use((err, req, res, next) => {
 //     ReportCrash(err.stack.toString())
