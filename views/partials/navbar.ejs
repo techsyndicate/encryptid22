@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <header class="navbar-container">
     <nav class="navbar">
-        <a href="/" class="nav-branding"><img width="80px" src="/ts.png"></a>
+        <a href="/" class="nav-branding"><img style="width: 80px;" src="/ts.png"></a>
         <ul class="nav-menu">
-            <% if (typeof user == "undefined"){ %>
+           
             <li class="nav-item">
                 <a href="/leaderboard" class="nav-link">Leaderboard</a>
             </li>
@@ -11,7 +11,7 @@
                 <a href="/auth/discord" class="nav-link mobile">Login</a>
             </li>
             <button class="sign-button desktop" onclick="register()">Login</button>
-            <%}else{%>
+
             <li class="nav-item">
                 <a href="/play" class="nav-link">Dashboard</a>
             </li>
@@ -21,7 +21,7 @@
             <li class="nav-item">
                 <a href="/profile" class="nav-link">Profile</a>
             </li>
-            <% } %>
+            
         </ul>
         <div class="hamburger">
             <span class="bar"></span>
@@ -32,6 +32,9 @@
 </header>
 
 <style>
+    nav{
+        padding: 10px;
+    }
     .sign-button {
         background-color: #393E47;
         color: white;
@@ -182,4 +185,4 @@
         hamburger.classList.remove("active");
         navMenu.classList.remove("active");
     }))
-</script>
+</script> -->

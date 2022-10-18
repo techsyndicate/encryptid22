@@ -39,7 +39,7 @@ app.use((req, res, next) => {
 
 //ejs
 app.set('view engine', 'ejs');
-
+app.use(express.static(path.join(__dirname, 'public')))
 //mongo
 const db = process.env.MONGO_URI;
 
