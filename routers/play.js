@@ -4,12 +4,12 @@ const adjLevel = require('../utilities/adjacent.json');
 const { checkAuthenticated } = require('../utilities/misc');
 
 router.get('/', checkAuthenticated, async (req, res) => {
-    if (Date.now() <= new Date("Mon Oct 17 2022 00:00:00 GMT+0530")) {
+    if (Date.now("GMT+0530") <= new Date(process.env.START_DATE).getTime()) {
         return res.send("The game is not yet available.");
     }
     
     if (req.user.play_current_level != undefined && !req.user.plat_levels_completed.includes(req.user.play_current_level)) {
-        var level = await levelSchema.findOne({ level_id: req.user.play_current_level });
+        var level = await levelSchema.findOne({ levelNumber: req.user.play_current_level });
         res.render('pages/level', { user: req.user, level: level });
     } else {
         res.render('pages/play', { user: req.user });
@@ -30,8 +30,8 @@ router.post('/submit',checkAuthenticated, async (req, res) => {
             }
         }));
         new Promise((resolve, reject) => {
-        req.user.plat_levels_completed.forEach((element, i) => {
-            if (req.user.plat_levels_unlocked.includes(element)) {
+            req.user.plat_levels_unlocked.forEach((element, i) => {
+            if (req.user.plat_levels_completed.includes(element) || element == null) {
                 req.user.plat_levels_unlocked.splice(req.user.plat_levels_unlocked.indexOf(element), 1);
             }
             if (i == req.user.plat_levels_completed.length - 1) {
@@ -52,6 +52,10 @@ router.get('/select/:id', checkAuthenticated, async (req, res) => {
         return res.redirect('/play');
     }
     if (req.user.plat_levels_unlocked.includes(req.params.id)) {
+        var level = await levelSchema.findOne({ levelNumber: req.params.id });
+        if (!level) {
+            return res.send({ success: false, message: "Level not made yet." });
+        }
         req.user.play_current_level = req.params.id;
         req.user.save();
         return res.redirect('/play');

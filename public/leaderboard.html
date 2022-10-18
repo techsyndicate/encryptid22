@@ -1,0 +1,71 @@
+<div class="Leaderboard">
+    <div class="leader-entry-top">
+        <p>UserName</p>
+        <p>Completed Levels</p>
+    </div>
+
+    
+    <div class="leader-entry">
+        <h3>Aayush Garg</h3>
+        <p>1</p>
+    </div>
+    
+    <div class="leader-entry">
+        <h3>illuminati</h3>
+        <p>0</p>
+    </div>
+    
+    <div class="leader-entry">
+        <h3>nvs</h3>
+        <p>0</p>
+    </div>
+    
+</div>
+<style>
+    .Leaderboard {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: black;
+        min-height: calc(100vh - 90px);
+    }
+
+    .leader-entry-top {
+        margin-top: 10px;
+        color: #16e16e;
+        display: flex;
+        width: 60%;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        font-size: 24px;
+        font-weight: 300;
+    }
+
+    .leader-entry {
+        margin-top: 10px;
+        color: white;
+        display: flex;
+        width: 60%;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        border-bottom: 1px solid #686A74;
+    }
+
+    @media screen and (max-width: 768px) {
+        .leader-entry-top {
+            width: 80%;
+            font-size: 18px;
+        }
+
+        .leader-entry {
+            width: 80%;
+            font-size: 18px;
+        }
+
+        .leader-entry h3 {
+            font-size: 18px;
+        }
+    }
+</style>

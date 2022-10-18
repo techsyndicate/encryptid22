@@ -1,0 +1,139 @@
+<div class="profile-main">
+    <div class="profile-container">
+        <h1 class="title">Complete Profile</h1>
+        <div class="discription">
+            <input class="name" id="name" name="name" placeholder="Name">
+            <input class="name" id="school" name="school" placeholder="School">
+        </div>
+        <button onclick="update()"  class="logout">Update</button>
+    </div>
+</div>
+
+<style>
+    .title {
+        font-size: 3rem;
+        font-weight: 600;
+        margin-top: 1rem;
+        color: #16e16e;
+        margin-bottom: 1rem;
+    }
+
+    input {
+        width: 100%;
+        padding: 0.5em;
+        font-size: 1.2em;
+        border: 1px solid #686A74;
+        outline: #16e16e;
+        border-radius: 4px;
+        background-color: transparent;
+        color: white;
+        height: 50px;
+    }
+
+    input:focus {
+        border: 1px solid #16e16e;
+    }
+
+    .logout {
+        margin-top: 50px;
+        padding: 0.5em;
+        padding-left: 1em;
+        padding-right: 1em;
+        font-size: 1.7rem;
+        border-radius: 10px;
+        background-color: #16e16e;
+        color: black;
+    }
+
+    span {
+        color: #16e16e;
+    }
+
+    .discription {
+        width: max-content;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .name {
+        font-size: 2rem;
+        font-weight: 600;
+        margin-top: 1rem;
+        color: white;
+    }
+
+    .profile-image {
+        border-radius: 15px;
+        margin-bottom: 20px;
+    }
+
+    .profile-main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100%;
+        background-color: black;
+    }
+
+    .profile-container {
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+        align-items: center;
+        width: 80vw;
+        min-height: 80vh;
+    }
+
+    @media screen and (max-width: 768px) {
+        .profile-container {
+            width: 100vw;
+        }
+
+        .discription {
+            width: 90vw;
+        }
+
+        .name {
+            font-size: 1.5rem;
+        }
+
+        .logout {
+            font-size: 1.5rem;
+        }
+    }
+</style>
+
+<script>
+    var notyf = new Notyf()
+    function update(){
+        var name = document.getElementById("name").value
+        var school = document.getElementById("school").value
+        if(name == "" || school == ""){
+            notyf.error("Please fill all the fields")
+        }else{
+            fetch("/profile/updateProfile", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    name: name,
+                    school: school
+                }),
+            }).then((res) => {
+                return res.json()
+            }).then((data) => {
+                if(data.success){
+                    notyf.success(data.message)
+                    setTimeout(() => {
+                        window.location.href = "/play"
+                    }, 1000);
+                }else{
+                    notyf.error("Something went wrong")
+                }
+            })
+        }
+    }
+</script>

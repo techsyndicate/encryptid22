@@ -1,18 +1,100 @@
-<div>
-    <h1><%=level.number %></h1>
-    <h2><%= level.maintext%> </h2>
-    <% if (typeof level.image != "undefined") {%>
-    <img src="<%=level.image %> ">
-    <% } %>
-    <!-- <%= level.sourceCodeHint %> -->
-    <div class="field">
-        <label for="maintext">try your luck</label>
-        <input type="text" id="maintext" name="maintext" placeholder="this is a test answer">
+<div class="level-main">
+    <div class="level-container">
+        <h1 class="level-identifier">Level &nbsp;<%=level.levelNumber %></h1>
+        <h2 class="level-text"><%= level.maintext %> </h2>
+        <br>
+        <% if (typeof level.image != "undefined") {%>
+        <img class="level-image" src="<%=level.image %> ">
+        <% } %>
+        <!-- <%= level.sourceCodeHint %> -->
+        <div class="field">
+            <input oninput="textchange()" type="text" id="maintext" name="maintext" placeholder="Try here!">
+            <button onclick="submit()">Submit</button>
+        </div>
+        <br><br><br><br>
     </div>
-    <button onclick="submit()">submit</button>
 </div>
+
+<style>
+    .field {
+        margin-top: 2em;
+        display: flex;
+    }
+
+    .field input {
+        width: 100%;
+        padding: 0.5em;
+        font-size: 1.2em;
+        border: 1px solid #686A74;
+        outline: #16e16e;
+        border-radius: 4px;
+        background-color: transparent;
+        color: white;
+    }
+
+    .field button {
+        padding: 0.5em;
+        padding-left: 1em;
+        padding-right: 1em;
+        font-size: 1.2em;
+        border-radius: 10px;
+        background-color: #16e16e;
+        color: black;
+        margin-left: 1em;
+    }
+
+    .field input:focus {
+        border: 1px solid #16e16e;
+    }
+
+    .level-text {
+        font-size: 1em;
+        max-width: 80vw;
+        word-wrap: break-word;
+        color: #f5f5f5;
+    }
+
+    .level-identifier {
+        font-size: 3em;
+        font-weight: bold;
+        color: #16e16e;
+        margin-bottom: 20px;
+    }
+
+    .level-main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: black;
+        min-height: 90%;
+    }
+
+    .level-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 80vw;
+        min-height: 80vh;
+        color: white;
+    }
+
+    .level-image {
+        max-width: 90%;
+    }
+</style>
+
 <script>
     var notyf = new Notyf();
+
+    function textchange() {
+        var text = document.getElementById("maintext").value;
+        //remove all spaces, special characters and lowercaps it all
+        text = text.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+        document.getElementById("maintext").value = text;
+        console.log(text);
+    }
+
     function submit() {
         var maintext = document.getElementById("maintext").value;
         var data = {

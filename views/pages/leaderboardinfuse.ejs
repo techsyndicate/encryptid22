@@ -1,0 +1,29 @@
+<!-- get public leaderboard -->
+<div class="leaderboard-infuse">
+    <h1>loading</h1>
+</div>
+<style>
+    .leaderboard-infuse {
+        background-color: black;
+        color: white;
+        min-height: 100vh;
+    }
+</style>
+<script>
+    let leaderboard = document.querySelector('.leaderboard-infuse');
+
+    addEventListener('load', (event) => {
+        console.log('page is fully loaded');
+        getit();
+    });
+
+    //get public leaderboard
+    async function getit() {
+        await fetch('/leaderboard.html').then((res) => {
+            console.log(res);
+            return res.text()
+        }).then(async (data) => {
+            leaderboard.innerHTML = data;
+        });
+    }
+</script>
