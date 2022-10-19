@@ -15,11 +15,38 @@
         <% if (level.hintHidden) {%>
         <h2 class="level-text hidden"><%= level.hintHidden %> </h2>
         <% } %>
+        <script>
+            localStorage.setItem("<%= level.localStorageName %>", "<%= level.localStorageHint %>");
+            document.cookie = "<%= level.cookieHint.name %>=<%= level.cookieHint.value %>";
+            const parseCookie = str =>
+                str
+                .split(';')
+                .map(v => v.split('='))
+                .reduce((acc, v) => {
+                    acc[decodeURIComponent(v[0].trim())] = decodeURIComponent(v[1].trim());
+                    return acc;
+                }, {});
+
+            var checkCookie = function () {
+                var lastCookie = document.cookie; // 'static' memory between function calls
+                return function () {
+                    var currentCookie = document.cookie;
+                    if (currentCookie != lastCookie) {
+                        var parsed = parseCookie(currentCookie);
+                        if (parsed.<%= level.cookieHint.name %> == "<%= level.cookieHint.onChangeValue %>") {
+                            window.location.href = "<%= level.cookieHint.redirect %>";
+                        }
+                        lastCookie = currentCookie; // store latest cookie
+
+                    }
+                };
+            }();
+            window.setInterval(checkCookie, 100); // run every 100 ms
+        </script>
     </div>
 </div>
 
 <style>
-
     .hidden {
         color: #000 !important;
     }
@@ -61,6 +88,7 @@
         max-width: 80vw;
         word-wrap: break-word;
         color: #f5f5f5;
+        white-space: pre-wrap;
     }
 
     .level-identifier {
@@ -99,9 +127,11 @@
         .level-container {
             width: 90vw;
         }
+
         .field input {
             width: 60vw;
         }
+
         .field button {
             width: 25vw;
         }

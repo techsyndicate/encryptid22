@@ -8,8 +8,12 @@ router.get('/', checkAuthenticated, async (req, res) => {
         return res.redirect('/');
     }
     if (req.user.play_current_level != undefined && !req.user.plat_levels_completed.includes(req.user.play_current_level)) {
-        var level = await levelSchema.findOne({ levelNumber: req.user.play_current_level });
-        res.render('pages/level', { user: req.user, level: level });
+        if (req.user.play_current_level == 99) {
+            return res.render('pages/end', { user: req.user });
+        } else {
+            var level = await levelSchema.findOne({ levelNumber: req.user.play_current_level });
+            res.render('pages/level', { user: req.user, level: level });
+        }
     } else {
         res.render('pages/play', { user: req.user });
     }
@@ -21,8 +25,15 @@ router.post('/submit', checkAuthenticated, async (req, res) => {
     if (req.body.answer.toLowerCase() === level.answer.toLowerCase()) {
         req.user.plat_levels_completed.push(req.user.play_current_level);
         req.user.plat_last_completed_time = Date.now("GMT+0530");
+        if (req.user.play_current_level == 10) {
+            req.user.play_current_level = 99;
+            req.user.save()
+            return res.send({ success: true, message: "Correct!" });
+        }
         if (req.user.plat_levels_completed.length == 15) {
             req.user.plat_levels_unlocked = ["10"];
+            req.user.save()
+            res.send({ success: true, message: "Correct!" });
         } else {
             var nextLevel = adjLevel.filter(function (v) {
                 return v.lev == req.user.play_current_level; // Filter out the appropriate one
@@ -34,25 +45,26 @@ router.post('/submit', checkAuthenticated, async (req, res) => {
                     req.user.plat_levels_unlocked.push(element);
                 }
             }));
-        }
-        new Promise((resolve, reject) => {
- 
-            req.user.plat_levels_unlocked.forEach((element, i) => {
-                if (req.user.plat_levels_completed.includes(element) || element == null || element == undefined) {
-                    req.user.plat_levels_unlocked.splice(req.user.plat_levels_unlocked.indexOf(element), 1);
-                }
-                console.log(i, req.user.plat_levels_unlocked.length, req.user.plat_levels_unlocked)
-                if (i == req.user.plat_levels_unlocked.length) {
-                    console.log(req.user.plat_levels_unlocked.length);
-                    resolve();
-                    console.log('here')
-                }
+
+            new Promise((resolve, reject) => {
+
+                req.user.plat_levels_unlocked.forEach((element, i) => {
+                    if (req.user.plat_levels_completed.includes(element) || element == null || element == undefined) {
+                        req.user.plat_levels_unlocked.splice(req.user.plat_levels_unlocked.indexOf(element), 1);
+                    }
+                    console.log(i, req.user.plat_levels_unlocked.length, req.user.plat_levels_unlocked)
+                    if (i == req.user.plat_levels_unlocked.length) {
+                        console.log(req.user.plat_levels_unlocked.length);
+                        resolve();
+                        console.log('here')
+                    }
+                });
+            }).then(() => {
+                console.log("hi", req.user.plat_levels_unlocked);
+                req.user.save();
+                res.send({ success: true, message: "Correct!" });
             });
-        }).then(() => {
-            console.log("hi", req.user.plat_levels_unlocked);
-            req.user.save();
-            res.send({ success: true, message: "Correct!" });
-        });
+        }
     } else {
         res.send({ success: false, message: "Incorrect." });
     }
