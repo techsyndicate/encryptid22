@@ -27,7 +27,7 @@ button{
     margin-top: -5vw;
 }
 .landing-illus{
-    width: 95em;
+    width: 75em;
     height: 35vw;
     background: url('/assets/illus.png');
     background-size: cover;
@@ -242,4 +242,25 @@ nav{
         width: 75vw;
         height: 75vw;
     }
+}
+.countdown {
+    color: #eee;
+    font-size: 1vw;
+    font-weight: 500;
+    justify-content: space-between;
+    display: flex;
+    list-style-type: none;
+    padding: 1em;
+    width: 35em;
+    margin-right: auto;
+    margin-top: 2.5vw;
+}
+.countdown li{
+    text-align: center;
+}
+
+.countdown li span{
+    font-size: 4.5vw;
+    font-weight: 600;
+    letter-spacing: 1.25px;
 }
