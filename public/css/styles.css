@@ -263,31 +263,25 @@ nav {
         font-size: 4vw;
         width: 75%;
     }
-
-    .landing-illus {
-        width: 75vw;
-        height: 75vw;
+    .landing-illus{
+        width: 30em;
+        height: 20em;
+        margin-top: 7.5em;
+        margin-left: -1.5em;
+    }
+    .countdown{
+        margin-left: -2.5em;
+    }
+    .countdown li p {
+        margin-left: 1.5em !important;
+    }
+    .countdown li span{
+        margin-left: 2em !important;
     }
 
     .countdown {
         font-size: 10vw;
         width: 100vw !important;
-    }
-
-    .countdown li {
-        width: 200px;
-        text-align: start !important;
-    }
-
-    .countdown li p {
-        font-size: 8vw !important;
-    }
-
-    .countdown li span {
-        font-size: 10vw;
-        font-weight: 600;
-        letter-spacing: 1.25px;
-        float: left;
     }
 }
 
@@ -305,10 +299,15 @@ nav {
 
 .countdown li {
     text-align: center;
+    width: 25em;
+    margin-left: -3.5em;
 }
 
 .countdown li span {
     font-size: 4.5vw;
     font-weight: 600;
     letter-spacing: 1.25px;
+}
+.countdown li p{
+    margin-left: 1.5em;
 }
