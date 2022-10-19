@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const answerSchema = require('../models/answerSchema');
 const levelSchema = require('../models/levelSchema');
 const adjLevel = require('../utilities/adjacent.json');
 const { checkAuthenticated } = require('../utilities/misc');
@@ -20,6 +21,13 @@ router.get('/', checkAuthenticated, async (req, res) => {
 });
 
 router.post('/submit', checkAuthenticated, async (req, res) => {
+    req.user.answerlog.push({ level: req.user.play_current_level, try: req.body.answer });
+    await req.user.save();
+    await new answerSchema({
+        levelNumber: req.user.play_current_level,
+        try: req.body.answer,
+        user: req.user.username,
+    }).save();
     var level = await levelSchema.findOne({ levelNumber: req.user.play_current_level });
     console.log(req.user.play_current_level);
     if (req.body.answer.toLowerCase() === level.answer.toLowerCase()) {

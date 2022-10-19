@@ -1,0 +1,21 @@
+<% for (i in answerlog){ %>
+<div class="answerlog-div">
+    <p> <%= answerlog[i].try %>
+    </p>
+    <p>
+        level: <%= answerlog[i].levelNumber %>
+    </p>
+    <p>
+        by: <%= answerlog[i].user %>
+    </p>
+</div>
+<% } %>
+
+<style>
+    .answerlog-div {
+        border: 1px solid black;
+        margin: 10px;
+        padding: 10px;
+        background-color: #404040;
+    }
+</style>

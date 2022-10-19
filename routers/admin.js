@@ -1,5 +1,7 @@
 const router = require('express').Router();
+const answerSchema = require('../models/answerSchema');
 const levelSchema = require('../models/levelSchema');
+const userSchema = require('../models/userSchema');
 const { checkAdmin } = require('../utilities/misc');
 
 router.get('/', checkAdmin, async (req, res) => {
@@ -51,5 +53,38 @@ router.post('/edit/:id', checkAdmin, async (req, res) => {
         res.send({ success: false, message: "Level does not exist." });
     }
 });
+
+router.get('/users', checkAdmin, async (req, res) => {
+    var users = await userSchema.find();
+    res.render('admin/users', { users });
+});
+
+router.get('/ban/:id', checkAdmin, async (req, res) => {
+    var user = await userSchema.findById(req.params.id);
+    if (user) {
+        user.banned = true;
+        await user.save();
+        res.redirect('/admin/users');
+    } else {
+        res.send({ success: false, message: "User does not exist." });
+    }
+})
+
+router.get('/unban/:id', checkAdmin, async (req, res) => {
+    var user = await userSchema.findById(req.params.id);
+    if (user) {
+        user.banned = false;
+        await user.save();
+        res.redirect('/admin/users');
+    } else {
+        res.send({ success: false, message: "User does not exist." });
+    }
+})
+
+router.get('/answerlog', checkAdmin, async (req, res) => {
+    var answerlog = await answerSchema.find();
+    console.log(answerlog);
+    res.render('admin/answerlogoverall', { answerlog });
+})
 
 module.exports = router;

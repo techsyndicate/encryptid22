@@ -26,6 +26,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: dateStringWithTime
     },
+    answerlog: [{
+        level: reqStringFalse,
+        try: reqStringFalse
+    }],
     admin: reqBoolFalse,
     id: reqStringFalseDefEmpty,
     username: reqStringFalseDefEmpty,
