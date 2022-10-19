@@ -11,6 +11,10 @@ body{
     width: 100%;
     color: #eee;
 }
+.landing-div p{
+    word-wrap: break-word;
+    width: 65%;
+}
 .landing-div{
     display: flex;
     width: 100%;
@@ -19,14 +23,14 @@ body{
     margin-top: -5vw;
 }
 .landing-illus{
-    width: 35vw;
+    width: 95em;
     height: 35vw;
     background: url('/assets/illus.png');
     background-size: cover;
     background-position: center;
-    margin-right: 5vw;
     margin-top: 5vw;
-    transform: scale(1.2) rotate(10deg) skew(1.5deg);
+    margin-right: .5vw;
+    transform: rotate(10deg) skew(1.5deg);
 }
 .nav-branding{
     margin-left: 3vw;
@@ -115,6 +119,7 @@ nav{
 
     .hamburger {
         display: block;
+        margin-right: 10vw;
     }
 
     .hamburger.active .bar:nth-child(2) {
@@ -155,6 +160,10 @@ nav{
 
     .navbar {
         justify-content: space-between;
+    }
+    .nav-link{
+        font-size: 5vw;
+        margin-top: 5vw;
     }
 }
 .Leaderboard {
@@ -212,4 +221,21 @@ nav{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+@media only screen and (max-width: 768px){
+    .landing-div{
+        display: block;
+        margin-top: 5em;
+    }
+    .landing-div h1{
+        font-size: 10vw;
+    }
+    .landing-div p {
+        font-size: 4vw;
+        width: 75%;
+    }
+    .landing-illus{
+        width: 75vw;
+        height: 75vw;
+    }
 }
