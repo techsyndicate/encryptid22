@@ -4,11 +4,11 @@
     scroll-behavior: smooth;
     padding: 0;
     margin: 0;
-    width: 100%;
     box-sizing: border-box;
 }
 body{
     background-color: rgb(0, 0, 0);
+    width: 100%;
     color: #eee;
 }
 .landing-div{
@@ -65,11 +65,12 @@ nav{
     min-height: 100px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 .nav-menu {
     display: flex;
-    width: 35%;
+    width: max-content;
     z-index: 1;
 }
 
@@ -205,12 +206,8 @@ nav{
         font-size: 18px;
     }
 }
-.triangle-pyramid{
-    transform: scale(2);
-}
-
 .play-container {
-    min-height: 90vh;
+    min-height: 80vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
