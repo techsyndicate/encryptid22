@@ -26,6 +26,7 @@ start.addEventListener('click', () => {
 // })
 reset.addEventListener('click', () => {
     gameCanvas.style.display = 'none';
+    countLogs = []
 })
 function SnakeLadder() {
     var canvas = document.getElementById('game');
@@ -185,25 +186,28 @@ function SnakeLadder() {
     
     // start the game
     requestAnimationFrame(loop);
+
 }
 var countLogs = []
 arrowLeft.addEventListener('click',()=>{
   countLogs.push('left')
-  console.log('left')
 })
 arrowRight.addEventListener('click', ()=>{
   countLogs.push('right')
-  console.log('right')
 })
 arrowUp.addEventListener('click', ()=>{
   countLogs.push('start')
-  console.log('start')
+  ARRAYEQUAL()
 })
 arrowDown.addEventListener('click', ()=>{
   countLogs.push('down')
-  console.log('down')
 })
 nevisCode = ['start', 'down', 'down', 'down', 'down', 'down', 'right', 'start']
-if (countLogs == nevisCode){
-  window.location.href = 'https://www.youtube.com/watch?v=-sOadAaGiq4'
+
+function ARRAYEQUAL(){
+  console.log(countLogs,nevisCode)
+  console.log(JSON.stringify(countLogs)==JSON.stringify(nevisCode))
+  if (JSON.stringify(countLogs)==JSON.stringify(nevisCode)){
+    window.location.href='https://www.youtube.com/watch?v=-sOadAaGiq4'
+  }
 }
