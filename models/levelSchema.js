@@ -19,6 +19,7 @@ const levelSchema = new mongoose.Schema({
     answer: reqStringFalse,
     hintHidden: reqStringFalse,
     localStorageHint: reqStringFalse,
+    localStorageName: reqStringFalse,
     cookieHint: {
         name: reqStringFalse,
         value: reqStringFalse,
