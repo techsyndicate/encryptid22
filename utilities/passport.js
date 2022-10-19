@@ -34,9 +34,11 @@ async function initialize(passport, req) {
     await passport.serializeUser((user, done) => {
         done(null, user._id)
     })
-    passport.deserializeUser(function (id, done) {
-        User.findById(id, function (err, user) {
-            done(null, user, { message: err });
+    await passport.deserializeUser( (id, done) => {
+        User.findById(id).then(user => {
+            done(null, user)
+        }).catch(err => {
+            done(err, null)
         });
     });
 }

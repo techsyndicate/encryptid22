@@ -1,0 +1,116 @@
+<div class="edit-main">
+    <% for (i in levels){ %>
+    <div class="edit-container">
+        <h1><span>Number:</span>
+            <input type="number" id="levelNumber<%= levels[i]._id %>" name="levelNumber"
+                value="<%= levels[i].levelNumber.toString() %>" placeholder="<%= levels[i].levelNumber %>">
+        </h1>
+        <p><span>Text:</span>
+            <textarea type="text" id="maintext<%= levels[i]._id %>" name="maintext"
+                placeholder="<%= levels[i].maintext %>"><%= levels[i].maintext %></textarea>
+        </p>
+        <p><span>image:</span> <input type="text" id="image<%= levels[i]._id %>" name="image"
+                value="<%= levels[i].image %>" placeholder="<%= levels[i].image %>"></p>
+        <p><span>source code hint:</span><input type="text" id="sourceCodeHint<%= levels[i]._id %>"
+                name="sourceCodeHint" value="<%= levels[i].sourceCodeHint %>"
+                placeholder="<%= levels[i].sourceCodeHint %>"></p>
+        <p><span>answer: </span><input type="text" id="answer<%= levels[i]._id %>" name="answer"
+                value="<%= levels[i].answer %>" placeholder="<%= levels[i].answer %>"></p>
+        <p><span>hint text: </span><input type="text" id="hintHidden<%= levels[i]._id %>" name="hintHidden"
+                value="<%= levels[i].hintHidden %>" placeholder="<%= levels[i].hintHidden %>"></p>
+        <p><span>local storage name: </span><input type="text" id="localStorageName<%= levels[i]._id %>"
+                name="localStorageName" value="<%= levels[i].localStorageName %>"
+                placeholder="<%= levels[i].localStorageName %>"></p>
+        <p><span>local storage hint: </span><input type="text" id="localStorageHint<%= levels[i]._id %>"
+                name="localStorageHint" value="<%= levels[i].localStorageHint %>"
+                placeholder="<%= levels[i].localStorageHint %>"></p>
+        <div class="cookie-hint">
+            <p><span>cookie name:</span> <input type="text" id="cookieName<%= levels[i]._id %>" name="cookieName"
+                    value="<%= levels[i].cookieHint.name %>" placeholder="<%= levels[i].cookieHint.name %>"></p>
+            <p><span>cookie value:</span> <input type="text" id="cookieValue<%= levels[i]._id %>" name="cookieValue"
+                    value="<%= levels[i].value %>" placeholder="<%= levels[i].value %>"></p>
+            <p><span>cookie on change:</span> <input type="text" id="cookieChange<%= levels[i]._id %>"
+                    name="cookieChange" value="<%= levels[i].onChangeValue %>"
+                    placeholder="<%= levels[i].onChangeValue %>">
+            </p>
+            <p><span>cookie redirect:</span> <input type="text" id="cookieRedirect<%= levels[i]._id %>"
+                    name="cookieRedirect" value="<%= levels[i].redirect %>" placeholder="<%= levels[i].redirect %>"></p>
+        </div>
+        <button style="width: 50%;" onclick="submit('<%= levels[i]._id %>')">Update</button>
+    </div>
+
+    <% } %>
+</div>
+
+<style>
+    span {
+        color: #16e16e;
+    }
+
+    .edit-main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        min-height: 100%;
+    }
+
+    .edit-container {
+        display: flex;
+        flex-direction: column;
+        background-color: #404040;
+        width: 80vw;
+        padding: 20px;
+        margin: 20px;
+    }
+</style>
+
+<script>
+    async function submit(id) {
+        var maintext = document.getElementById("maintext"+id).value;
+        var image = document.getElementById("image"+id).value;
+        var sourceCodeHint = document.getElementById("sourceCodeHint"+id).value;
+        var answer = document.getElementById("answer"+id).value;
+        var hintHidden = document.getElementById("hintHidden"+id).value;
+        var localStorageHint = document.getElementById("localStorageHint"+id).value;
+        var cookieName = document.getElementById("cookieName"+id).value;
+        var cookieValue = document.getElementById("cookieValue"+id).value;
+        var cookieChange = document.getElementById("cookieChange"+id).value;
+        var cookieRedirect = document.getElementById("cookieRedirect"+id).value;
+        var levelNumber = document.getElementById("levelNumber"+id).value;
+        var localStorageName = document.getElementById("localStorageName"+id).value;
+
+        var data = {
+            maintext: maintext,
+            image: image,
+            sourceCodeHint: sourceCodeHint,
+            answer: answer,
+            hintHidden: hintHidden,
+            localStorageHint: localStorageHint,
+            cookieHint: {
+                name: cookieName,
+                value: cookieValue,
+                onChangeValue: cookieChange,
+                redirect: cookieRedirect
+            },
+            levelNumber: levelNumber
+        }
+        var notyf = new Notyf();
+        var response = await fetch("/admin/edit/" + id, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        }).then((res) => {
+            return res.json()
+        }).then((data) => {
+            if (data.success) {
+                notyf.success("Updated!");
+            } else {
+                notyf.error("Error!");
+            }
+        });
+    }
+</script>

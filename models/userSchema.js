@@ -18,6 +18,10 @@ const userSchema = new mongoose.Schema({
     plat_levels_unlocked: [reqStringFalse],
     plat_levels_completed: [reqStringFalse],
     play_current_level: reqStringFalse,
+    plat_last_completed_time: {
+        type: String,
+        default: dateStringWithTime
+    },
     date: {
         type: String,
         default: dateStringWithTime
@@ -38,19 +42,7 @@ const userSchema = new mongoose.Schema({
     email: reqStringFalseDefEmpty,
     verified: reqBoolFalse,
     provider: reqStringFalseDefEmpty,
-    accessToken: reqStringFalseDefEmpty,
-    guilds: [
-        {
-            id: reqStringFalseDefEmpty,
-            name: reqStringFalseDefEmpty,
-            icon: reqStringFalseDefEmpty,
-            owner: reqBoolFalse,
-            permissions: reqNumberFalse,
-            features: [],
-            permissions_new: reqStringFalseDefEmpty
-        }
-    ],
-
+    accessToken: reqStringFalseDefEmpty
 })
 
 // Export Schema
