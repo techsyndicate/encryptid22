@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
 });
 
 async function updateLeaderboard() {
-    var users = await User.find({}).sort({ plat_levels_completed: -1 }).limit(10);
+    var users = await User.find({ admin: false }).sort({ plat_levels_completed: -1 }).limit(10);
     var file = await ejs.renderFile(__dirname + '/../views/pages/leaderboard.ejs', { users: users })
     //store file in public folder
     fs.writeFileSync(__dirname + "/../public/leaderboard.html", file);
