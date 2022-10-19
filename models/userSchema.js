@@ -18,6 +18,10 @@ const userSchema = new mongoose.Schema({
     plat_levels_unlocked: [reqStringFalse],
     plat_levels_completed: [reqStringFalse],
     play_current_level: reqStringFalse,
+    plat_last_completed_time: {
+        type: String,
+        default: dateStringWithTime
+    },
     date: {
         type: String,
         default: dateStringWithTime

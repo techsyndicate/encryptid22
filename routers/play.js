@@ -7,7 +7,6 @@ router.get('/', checkAuthenticated, async (req, res) => {
     if (Date.now("GMT+0530") <= new Date(process.env.START_DATE).getTime()) {
         return res.redirect('/');
     }
-
     if (req.user.play_current_level != undefined && !req.user.plat_levels_completed.includes(req.user.play_current_level)) {
         var level = await levelSchema.findOne({ levelNumber: req.user.play_current_level });
         res.render('pages/level', { user: req.user, level: level });
@@ -20,6 +19,7 @@ router.post('/submit', checkAuthenticated, async (req, res) => {
     var level = await levelSchema.findOne({ levelNumber: req.user.play_current_level });
     if (req.body.answer.toLowerCase() === level.answer.toLowerCase()) {
         req.user.plat_levels_completed.push(req.user.play_current_level);
+        req.user.plat_last_completed_time = Date.now("GMT+0530");
         if (req.user.plat_levels_completed.length == 15) {
             req.user.play_current_level = 10;
         } else {

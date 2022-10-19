@@ -20,6 +20,16 @@
         <input type="text" id="hintHidden" name="hintHidden" placeholder="this is a not required hint">
     </div>
 
+    <div class="field">
+        <label for="answer">answer</label>
+        <input type="text" id="answer" name="answer" placeholder="this is a answer">
+    </div>
+
+    <div class="field">
+        <label for="localStorageHint">localStorageHint</label>
+        <input type="text" id="localStorageHint" name="localStorageHint" placeholder="this is a not required localStorageHint">
+    </div>
+
 
     <input type="button" value="proceed" onclick="submit();" class="signup-button" />
 
@@ -34,15 +44,19 @@
         var image = document.getElementById("image").value;
         var sourceCodeHint = document.getElementById("sourceCodeHint").value;
         var hintHidden = document.getElementById("hintHidden").value;
-
+        var answer = document.getElementById("answer").value;
+        var localStorageHint = document.getElementById("localStorageHint").value;
+        
         var data = {
             levelNumber: levelNumber,
             maintext: maintext,
             image: image,
-            sourceCodeHint: sourceCodeHint, 
-            hintHidden: hintHidden
+            sourceCodeHint: sourceCodeHint,
+            hintHidden: hintHidden,
+            answer: answer,
+            localStorageHint: localStorageHint
         };
-        
+
         fetch('/admin/add', {
             method: 'POST',
             headers: {

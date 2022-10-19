@@ -18,6 +18,13 @@ const levelSchema = new mongoose.Schema({
     sourceCodeHint: reqStringFalse,
     answer: reqStringFalse,
     hintHidden: reqStringFalse,
+    localStorageHint: reqStringFalse,
+    cookieHint: {
+        name: reqStringFalse,
+        value: reqStringFalse,
+        onChangeValue: reqStringFalse,
+        redirect: reqStringFalse,
+    },
     date: {
         type: String,
         default: dateStringWithTime
