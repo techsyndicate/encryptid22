@@ -1,7 +1,11 @@
 var start = document.querySelector('#start'),
     reset = document.querySelector('#reset'),
     gameCanvas = document.querySelector('canvas')
-    cheatCode = document.querySelector('.button-1');
+    cheatCode = document.querySelector('.button-1'),
+    arrowUp = document.querySelector('.arrow-up'),
+    arrowLeft = document.querySelector('.arrow-left')
+    arrowDown = document.querySelector('.arrow-down')
+    arrowRight = document.querySelector('.arrow-right')
 start.addEventListener('click', () => {
     gameCanvas.style.display = 'block'
     gameCanvas.style.width = '15em';
@@ -170,4 +174,25 @@ function SnakeLadder() {
     
     // start the game
     requestAnimationFrame(loop);
+}
+var countL = 0,
+    countR = 0,
+    countD = 0,
+    countU = 0;
+document.querySelector(arrowLeft).addEventListener('click',()=>{
+  countL+=1
+})
+document.querySelector(arrowRight).addEventListener('click',()=>{
+  countR+=1
+})
+document.querySelector(arrowUp).addEventListener('click',()=>{
+  countU+=1
+})
+document.querySelector(arrowDown).addEventListener('click',()=>{
+  countD+=1
+})
+
+nevisCode = [4,5,6,7]
+if ([countU,CountL,countR,countD] == nevisCode){
+  window.location.href = '/link'
 }
