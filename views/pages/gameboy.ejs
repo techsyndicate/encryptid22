@@ -5,14 +5,8 @@
       <section class="screen">
         <span> </span>
         <div class="glass">
-          <div class="scoreDisplay">
-            Score :
-            <div class="score"></div>
-          </div>
-          <div class="snake-grid"></div>
-          <div class="popup">
-            <button class="playAgain">play Again</button>
-          </div>
+          <canvas id="game">
+          </canvas>
         </div>
       </section>
       <div class="gameboy-controls">
@@ -24,15 +18,14 @@
         </div>
         <div class="buttons">
           <button class="button-1"></button>
-          <button class="button-2"></button>
         </div>
         <div class="start-reset-buttons">
           <div class="start-button">
-            <button></button><br />
+            <button id="start"></button><br />
             <span class="span">START</span>
           </div>
           <div class="reset-button">
-            <button></button><br />
+            <button id="reset"></button><br />
             <span class="span">RESET</span>
           </div>
         </div>
@@ -56,7 +49,6 @@
     flex-shrink: 0;
   }
   .gameboy {
-    font-family: "Silkscreen" !important;
     height: 90vh;
     display: flex;
     align-items: center;
@@ -80,7 +72,7 @@
   }
   .header:after,
   .header:before {
-    height: 7.5%;
+    height: 4.5em;
     width: 5px;
     content: "";
     background: #0d2b1f;
@@ -218,16 +210,16 @@
   }
   .buttons {
     display: flex;
-    transform: rotate(-35deg) translateX(-15px) translateY(-5px);
+    transform: rotate(-35deg) translateX(-15px) translateY(-35px);
     justify-content: space-between;
     width: 13.5vw;
   }
   .buttons button {
     height: 4.5vw;
-    width: 4.5vw;
-    border-radius: 100%;
+    width: 12.5vw;
+    border-radius: 20px;
     border: 5px solid #0d2b1f;
-    margin-top: 5vw;
+    margin-top: 3.5em;
     background: #fc6963;
     margin-left: 2.5vw;
     box-shadow: inset 0 4px #fff, inset 0 -4px rgba(0, 0, 0, 0.2);
@@ -246,6 +238,7 @@
     width: 7vw;
     border-radius: 10px;
     border: 5px solid #0d2b1f;
+    font-family: 'Silkscreen' !important;
     transform: rotate(-35deg);
     background: #6b635f;
     box-shadow: inset 0 2px #fff, inset 0 -4px rgba(0, 0, 0, 0.2);
@@ -255,27 +248,6 @@
     transform: translateX(3.75em) translateY(-1.7em) rotate(-35deg);
     pointer-events: none;
   }
-  .popup button {
-    background: #314732;
-    border-radius: 10px;
-    border: none;
-    padding: 5px;
-    color: #eee;
-    cursor: pointer;
-    margin: 7.5vw 6.5vw;
-  }
-  .popup {
-    display: none;
-  }
-  .scoreDisplay {
-    font-size: 1.5vw;
-    margin: 1.2vw 1vw;
-  }
-  .snake {
-    background: blue;
-  }
-  .apple {
-    background: yellow;
-    border-radius: 20px;
-  }
+  
 </style>
+<script src="../js/gameboy.js"></script>
