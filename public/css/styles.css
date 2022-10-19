@@ -13,7 +13,7 @@ body{
 }
 .landing-div p{
     word-wrap: break-word;
-    width: 55%;
+    width: 65%;
 }
 .landing-div{
     display: flex;
@@ -23,14 +23,14 @@ body{
     margin-top: -5vw;
 }
 .landing-illus{
-    width: 35vw;
+    width: 95em;
     height: 35vw;
     background: url('/assets/illus.png');
     background-size: cover;
     background-position: center;
     margin-top: 5vw;
-    margin-right: 10vw;
-    transform: scale(1.2) rotate(10deg) skew(1.5deg);
+    margin-right: .5vw;
+    transform: rotate(10deg) skew(1.5deg);
 }
 .nav-branding{
     margin-left: 3vw;

@@ -1,0 +1,302 @@
+<div class="gamer-container">
+  <div class="gameboy">
+    <div class="gameboy-body">
+      <div class="header"></div>
+      <section class="screen">
+        <span> </span>
+        <div class="glass">
+          <div class="scoreDisplay">
+            Score :
+            <div class="score"></div>
+          </div>
+          <div class="snake-grid"></div>
+          <div class="popup">
+            <button class="playAgain">play Again</button>
+          </div>
+        </div>
+      </section>
+      <div class="gameboy-controls">
+        <div class="directions">
+          <button class="arrow-left"></button>
+          <button class="arrow-top"></button>
+          <button class="arrow-right"></button>
+          <button class="arrow-bottom"></button>
+        </div>
+        <div class="buttons">
+          <button class="button-1"></button>
+          <button class="button-2"></button>
+        </div>
+        <div class="start-reset-buttons">
+          <div class="start-button">
+            <button></button><br />
+            <span class="span">START</span>
+          </div>
+          <div class="reset-button">
+            <button></button><br />
+            <span class="span">RESET</span>
+          </div>
+        </div>
+        <div class="speaker">
+          <span>•••••</span><br />
+          <span>•••••••</span><br />
+          <span>•••••</span><br />
+          <span>••••••</span><br />
+          <span>••••</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Silkscreen&display=swap");
+
+  * {
+    box-sizing: border-box;
+    color: #0d2b1f;
+  }
+  html,
+  body {
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+  }
+  .gameboy {
+    font-family: "Silkscreen", sans-serif;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .gameboy-body {
+    height: 80vw;
+    width: 42.5vw;
+    background: #32a877;
+    border-radius: 20px 20px 50px;
+    box-shadow: inset 10px 0 rgba(255, 255, 255, 0.5),
+      inset -10px 0 rgba(0, 0, 0, 0.5);
+    border: 5px solid #0d2b1f;
+  }
+  .header {
+    width: 100%;
+    height: 5vw;
+    border-bottom: 5px solid #0d2b1f;
+    box-shadow: 0 10px rgba(0, 0, 0, 0.5);
+  }
+  .header:after,
+  .header:before {
+    height: 5.5%;
+    width: 5px;
+    content: "";
+    background: #0d2b1f;
+    position: absolute;
+  }
+  .header:before {
+    left: 38.5vw;
+  }
+  .header:after {
+    right: 38vw;
+  }
+  .screen {
+    width: 34.5vw;
+    height: 33.5vw;
+    background: #6b635f;
+    margin: 30px 0 0 30px;
+    border: 6px solid rgba(0, 0, 0, 0.5);
+    padding: 30px;
+    border-radius: 10px 10px 30px;
+    position: relative;
+  }
+  .glass {
+    width: 100%;
+    height: 100%;
+    background-color: #94b397;
+    border: 5px solid #3d3937;
+    box-shadow: inset 6px 6px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    position: relative;
+  }
+  .glass:after,
+  .glass:before {
+    content: "";
+    height: 200%;
+    width: 30px;
+    background-color: rgba(255, 255, 255, 0.4);
+    position: absolute;
+    transform: rotate(45deg);
+    top: -80px;
+  }
+  .glass:after {
+    right: -20px;
+    width: 50px !important;
+  }
+  .screen span {
+    width: 10px;
+    height: 10px;
+    background-color: #fc6963;
+    position: absolute;
+    left: 10px;
+    border-radius: 50%;
+    border: 2px solid rgba(0, 0, 0, 0.4);
+    top: 50%;
+    margin-top: -10px;
+  }
+  .screen:after,
+  .screen:before {
+    content: "";
+    height: 3px;
+    position: absolute;
+    top: 12px;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  .screen:before {
+    width: 100px;
+    left: 10px;
+  }
+  .screen:after {
+    width: 30px;
+    right: 10px;
+  }
+  .gameboy-controls {
+    padding: 30px 14px 0;
+  }
+  .directions {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 6px solid #0d2b1f;
+    background-color: #9eafaa;
+    position: relative;
+    display: flex;
+    transform: scale(0.95);
+    float: left;
+    margin-left: 3.5vw;
+  }
+  .directions button {
+    border: 6px solid #0d2b1f;
+    background-color: #6b8462;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    z-index: 9;
+    cursor: pointer;
+  }
+  .arrow-left {
+    border-right: none !important;
+    box-shadow: inset 0 4px #fff, inset 0 -4px rgba(0, 0, 0, 0.2);
+    top: 50%;
+    margin-top: -15px;
+    left: 13.5px;
+  }
+  .arrow-top {
+    border-bottom: none !important;
+    box-shadow: inset 0 4px #fff;
+    left: 50%;
+    margin-left: -15px;
+    top: 13.5px;
+  }
+  .arrow-right {
+    border-left: none !important;
+    box-shadow: inset 0 4px #fff, inset 0 -4px rgba(0, 0, 0, 0.2);
+    top: 50%;
+    margin-top: -15px;
+    right: 13.5px;
+  }
+  .arrow-bottom {
+    border-top: none !important;
+    box-shadow: inset 0 -4px rgba(0, 0, 0, 0.2);
+    left: 50%;
+    margin-left: -15px;
+    bottom: 13.5px;
+  }
+
+  .directions:after {
+    content: "";
+    width: 30px;
+    height: 30px;
+    background-color: #6b8462;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    margin: -15px;
+    z-index: 1;
+  }
+  .buttons {
+    display: flex;
+    transform: rotate(-35deg) translateX(-15px) translateY(-5px);
+    justify-content: space-between;
+    width: 17.5vw;
+  }
+  .buttons button {
+    height: 6vw;
+    width: 6vw;
+    border-radius: 100%;
+    border: 5px solid #0d2b1f;
+    margin-top: 5vw;
+    background: #fc6963;
+    margin-left: 2.5vw;
+    box-shadow: inset 0 4px #fff, inset 0 -4px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+  }
+  .start-reset-buttons {
+    display: flex;
+    transform: translate(-9.5vw, 6.5vw);
+  }
+  .start-reset-buttons button {
+    height: 2.5vw;
+    padding: 2.5px;
+    margin-left: 2.5vw;
+    cursor: pointer;
+    width: 7vw;
+    border-radius: 10px;
+    border: 5px solid #0d2b1f;
+    transform: rotate(-35deg);
+    background: #6b635f;
+    box-shadow: inset 0 2px #fff, inset 0 -4px rgba(0, 0, 0, 0.2);
+  }
+  .span {
+    position: absolute;
+    transform: translate(25px, 1.5px) rotate(-35deg);
+    pointer-events: none;
+  }
+  .speaker {
+    text-align: center;
+    position: absolute;
+    transform: rotate(40deg);
+    margin-top: 7.5vw;
+    margin-left: 27.5vw;
+  }
+  .speaker span {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 0px;
+    letter-spacing: 3px;
+    margin-top: -3px;
+    pointer-events: none;
+    display: block;
+  }
+  .popup button {
+    background: #314732;
+    border-radius: 10px;
+    border: none;
+    padding: 5px;
+    color: #eee;
+    cursor: pointer;
+    margin: 7.5vw 6.5vw;
+  }
+  .popup {
+    display: none;
+  }
+  .scoreDisplay {
+    font-size: 1.5vw;
+    margin: 1.2vw 1vw;
+  }
+  .snake {
+    background: blue;
+  }
+  .apple {
+    background: yellow;
+    border-radius: 20px;
+  }
+</style>
