@@ -40,7 +40,7 @@ app.use((req, res, next) => {
 
 //ejs
 app.set('view engine', 'ejs');
-
+app.use(express.static(path.join(__dirname, 'public')))
 //mongo
 const db = process.env.MONGO_URI;
 
@@ -117,7 +117,7 @@ mongoose.connect(db, {
     console.log("Connected to Mongo DB")
     app.listen(port, () => {
         // ReportWebVital(`TS Prog listening at port ${port}`);
-        console.log(`TS Prog listening at http://localhost:${port}`)
+        console.log(`TS encryptid listening at http://localhost:${port}`)
     })
 }).catch(err => {
     // ReportCrash(err.stack.toString())

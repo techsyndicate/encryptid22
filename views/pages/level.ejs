@@ -9,26 +9,28 @@
         <!-- <%= level.sourceCodeHint %> -->
         <div class="field">
             <input oninput="textchange()" type="text" id="maintext" name="maintext" placeholder="Try here!">
-            <button onclick="submit()">Submit</button>
+            <button class="try-here" onclick="submit()">Submit</button>
         </div>
         <br><br><br><br>
         <% if (level.hintHidden) {%>
         <h2 class="level-text hidden"><%= level.hintHidden %> </h2>
-        <% } %> 
+        <% } %>
     </div>
 </div>
 
 <style>
+
     .hidden {
         color: #000 !important;
     }
+
     .field {
         margin-top: 2em;
         display: flex;
     }
 
     .field input {
-        width: 100%;
+        width: 30vw;
         padding: 0.5em;
         font-size: 1.2em;
         border: 1px solid #686A74;
@@ -47,6 +49,7 @@
         background-color: #16e16e;
         color: black;
         margin-left: 1em;
+        width: 10vw;
     }
 
     .field input:focus {
@@ -87,6 +90,18 @@
 
     .level-image {
         max-width: 90%;
+    }
+
+    @media screen and (max-width: 768px) {
+        .level-container {
+            width: 90vw;
+        }
+        .field input {
+            width: 60vw;
+        }
+        .field button {
+            width: 25vw;
+        }
     }
 </style>
 
