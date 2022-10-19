@@ -49,7 +49,7 @@ router.post('/submit',checkAuthenticated, async (req, res) => {
 
 router.get('/select/:id', checkAuthenticated, async (req, res) => {
     if (req.user.play_current_level != undefined && !req.user.plat_levels_completed.includes(req.user.play_current_level)) {
-        return res.redirect('/play');
+        return res.send({success: false, message: "You have already started a level."});
     }
     if (req.user.plat_levels_unlocked.includes(req.params.id)) {
         var level = await levelSchema.findOne({ levelNumber: req.params.id });
@@ -58,7 +58,7 @@ router.get('/select/:id', checkAuthenticated, async (req, res) => {
         }
         req.user.play_current_level = req.params.id;
         req.user.save();
-        return res.redirect('/play');
+        return res.send({ success: true, message: "Selected Successfully!" });
     } else {
         res.send({ success: false, message: "Level not unlocked." });
     }
