@@ -127,7 +127,9 @@ nav{
     .hamburger.active .bar:nth-child(3) {
         transform: translateY(-8px) rotate(-45deg);
     }
-
+    .logo{
+        width: 10vw;
+    }
     .nav-menu {
         position: fixed;
         left: -100%;
@@ -202,4 +204,15 @@ nav{
     .leader-entry h3 {
         font-size: 18px;
     }
+}
+.triangle-pyramid{
+    transform: scale(2);
+}
+
+.play-container {
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
