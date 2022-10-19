@@ -2,9 +2,9 @@ var start = document.querySelector('#start'),
     reset = document.querySelector('#reset'),
     gameCanvas = document.querySelector('canvas')
     cheatCode = document.querySelector('.button-1'),
-    arrowUp = document.querySelector('.arrow-up'),
-    arrowLeft = document.querySelector('.arrow-left')
-    arrowDown = document.querySelector('.arrow-down')
+    arrowUp = document.querySelector('.arrow-top'),
+    arrowLeft = document.querySelector('.arrow-left'),
+    arrowDown = document.querySelector('.arrow-bottom'),
     arrowRight = document.querySelector('.arrow-right')
 start.addEventListener('click', () => {
     gameCanvas.style.display = 'block'
@@ -12,26 +12,22 @@ start.addEventListener('click', () => {
     gameCanvas.style.height = '13.5em';
     SnakeLadder()
 })
-var cheatCodeInput  = document.createElement('div')
-cheatCodeInput.classList.add('cheatcode')
-cheatCode.addEventListener('click',()=>{
-    gameCanvas.style.display = 'none'
-    cheatCodeInput.innerHTML = `
-        <input placeholder="enter code" class="cheat-input">
-        <button>
-            SUBMIT
-        </button>
-    `;
-    document.querySelector('.glass').appendChild(cheatCodeInput)
-})
+// var cheatCodeInput  = document.createElement('div')
+// cheatCodeInput.classList.add('cheatcode')
+// cheatCode.addEventListener('click',()=>{
+//     gameCanvas.style.display = 'none'
+//     cheatCodeInput.innerHTML = `
+//         <input placeholder="enter code" class="cheat-input">
+//         <button>
+//             SUBMIT
+//         </button>
+//     `;
+//     document.querySelector('.glass').appendChild(cheatCodeInput)
+// })
 reset.addEventListener('click', () => {
     gameCanvas.style.display = 'none';
-    cheatCodeInput.style.display= 'none'
+    countLogs = []
 })
-var cheatInput = document.querySelector('cheat-input')
-// if (cheatInput.value().lower() == 'nevis'){
-//     window.location.href = 'https://instgram.com'
-// }
 function SnakeLadder() {
     var canvas = document.getElementById('game');
     var context = canvas.getContext('2d');
@@ -170,29 +166,48 @@ function SnakeLadder() {
         snake.dy = grid;
         snake.dx = 0;
       }
+      arrowUp.addEventListener('click',()=>{
+        snake.dy = -grid;
+        snake.dx = 0;
+      })
+      arrowDown.addEventListener('click',()=>{
+        snake.dy = grid;
+        snake.dx = 0;
+      })
+      arrowLeft.addEventListener('click',()=>{
+        snake.dx = -grid;
+        snake.dy = 0;
+      })
+      arrowRight.addEventListener('click',()=>{
+        snake.dx = grid;
+        snake.dy = 0;
+      })
     });
     
     // start the game
     requestAnimationFrame(loop);
-}
-var countL = 0,
-    countR = 0,
-    countD = 0,
-    countU = 0;
-document.querySelector(arrowLeft).addEventListener('click',()=>{
-  countL+=1
-})
-document.querySelector(arrowRight).addEventListener('click',()=>{
-  countR+=1
-})
-document.querySelector(arrowUp).addEventListener('click',()=>{
-  countU+=1
-})
-document.querySelector(arrowDown).addEventListener('click',()=>{
-  countD+=1
-})
 
-nevisCode = [4,5,6,7]
-if ([countU,CountL,countR,countD] == nevisCode){
-  window.location.href = '/link'
+}
+var countLogs = []
+arrowLeft.addEventListener('click',()=>{
+  countLogs.push('left')
+})
+arrowRight.addEventListener('click', ()=>{
+  countLogs.push('right')
+})
+arrowUp.addEventListener('click', ()=>{
+  countLogs.push('start')
+  ARRAYEQUAL()
+})
+arrowDown.addEventListener('click', ()=>{
+  countLogs.push('down')
+})
+nevisCode = ['start', 'down', 'down', 'down', 'down', 'down', 'right', 'start']
+
+function ARRAYEQUAL(){
+  console.log(countLogs,nevisCode)
+  console.log(JSON.stringify(countLogs)==JSON.stringify(nevisCode))
+  if (JSON.stringify(countLogs)==JSON.stringify(nevisCode)){
+    window.location.href='https://www.youtube.com/watch?v=-sOadAaGiq4'
+  }
 }
