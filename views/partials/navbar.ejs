@@ -3,16 +3,17 @@
         window.location.href = "/auth/discord";
     }
 
-    const hamburger = document.querySelector(".hamburger");
-    const navMenu = document.querySelector(".nav-menu");
-    hamburger.addEventListener("click", () => {
-        hamburger.classList.toggle("active");
-        navMenu.classList.toggle("active");
-    })
+    // const hamburger = document.querySelector(".hamburger");
+    // const navMenu = document.querySelector(".nav-menu");
+    // hamburger.addEventListener("click", () => {
+    //     hamburger.classList.toggle("active");
+    //     navMenu.classList.toggle("active");
+    // })
     document.querySelectorAll(".nav-link").forEach(n => n.addEventListener("click", () => {
         hamburger.classList.remove("active");
         navMenu.classList.remove("active");
     }))
+
 </script> 
 <div class="navbar">
     <a href="/" class="nav-branding"><img class="logo" src="/ts.png"></a>
@@ -23,7 +24,7 @@
             </li>
             <li class="nav-item">
                 <a href="/auth/discord" class="nav-link ">Login</a>
-            </li>
+            </li>x
         <%}else{%>
             <li class="nav-item">
                 <a href="/play" class="nav-link">Dashboard</a>
