@@ -28,13 +28,14 @@
             <p><span>cookie name:</span> <input type="text" id="cookieName<%= levels[i]._id %>" name="cookieName"
                     value="<%= levels[i].cookieHint.name %>" placeholder="<%= levels[i].cookieHint.name %>"></p>
             <p><span>cookie value:</span> <input type="text" id="cookieValue<%= levels[i]._id %>" name="cookieValue"
-                    value="<%= levels[i].value %>" placeholder="<%= levels[i].value %>"></p>
+                    value="<%= levels[i].cookieHint.value %>" placeholder="<%= levels[i].cookieHint.value %>"></p>
             <p><span>cookie on change:</span> <input type="text" id="cookieChange<%= levels[i]._id %>"
-                    name="cookieChange" value="<%= levels[i].onChangeValue %>"
-                    placeholder="<%= levels[i].onChangeValue %>">
+                    name="cookieChange" value="<%= levels[i].cookieHint.onChangeValue %>"
+                    placeholder="<%= levels[i].cookieHint.onChangeValue %>">
             </p>
             <p><span>cookie redirect:</span> <input type="text" id="cookieRedirect<%= levels[i]._id %>"
-                    name="cookieRedirect" value="<%= levels[i].redirect %>" placeholder="<%= levels[i].redirect %>"></p>
+                    name="cookieRedirect" value="<%= levels[i].cookieHint.redirect %>"
+                    placeholder="<%= levels[i].cookieHint.redirect %>"></p>
         </div>
         <button style="width: 50%;" onclick="submit('<%= levels[i]._id %>')">Update</button>
     </div>
