@@ -3,14 +3,14 @@ const User = require('../models/userSchema');
 const ejs = require('ejs');
 var fs = require('fs');
 
-var lastRender = Date.now();
+var lastRender = Date('00');
 
 router.get('/', async (req, res) => {
     //update every 5 minutes
     await updateLeaderboard();
     res.render('pages/leaderboardinfuse', { user: req.user });
 });
-
+updateLeaderboard()
 async function updateLeaderboard() {
     if (Date.now() - lastRender < 300000) {
         console.log("Leaderboard not updated, too soon");
