@@ -61,6 +61,12 @@
     </svg>
 
     <% } %>
+    <div class="events-logo">
+        <a href="/play/gameboy">
+            <img src="/assets/game.svg" alt="">
+        </a>
+        <span class="events-text">Are you bored?</span>
+    </div>
 </div>
 
 <% if (user.plat_levels_unlocked[0] != "10") { %>
@@ -129,6 +135,9 @@
 
 
 <style>
+    body{
+        overflow-x: hidden;
+    }
     #play-10 {
         fill: #000 !important;
     }

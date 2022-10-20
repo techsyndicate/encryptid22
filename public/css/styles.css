@@ -311,3 +311,28 @@ nav {
 .countdown li p{
     margin-left: 1.5em;
 }
+.events-logo {
+    position: relative;
+    display: inline-block;
+    transition: all 0.5s ease;
+  }
+  
+  /* Tooltip text */
+  .events-logo .events-text {
+    visibility: hidden;
+    width: 12.5em;
+    color: #000;  
+    background-color: #16e16e;
+    text-align: center;
+    padding: .5em;
+    border-radius: 6px;
+    margin: -3em -8em;
+    transition: all 0.5s ease;
+    position: absolute;
+    z-index: 1;
+  }
+  
+  /* Show the tooltip text when you mouse over the tooltip container */
+  .events-logo:hover .events-text {
+    visibility: visible;
+  }
