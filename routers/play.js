@@ -8,6 +8,9 @@ router.get('/', checkAuthenticated, async (req, res) => {
     if (Date.now("GMT+0530") <= new Date(process.env.START_DATE).getTime()) {
         return res.redirect('/');
     }
+    if (req.user.plat_banned) {
+        return res.render('pages/banned', { user: req.user });
+    }
     if (req.user.play_current_level != undefined && !req.user.plat_levels_completed.includes(req.user.play_current_level)) {
         if (req.user.play_current_level == 99) {
             return res.render('pages/end', { user: req.user });
