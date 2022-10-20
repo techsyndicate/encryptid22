@@ -5,7 +5,8 @@ const adjLevel = require('../utilities/adjacent.json');
 const { checkAuthenticated } = require('../utilities/misc');
 
 router.get('/', checkAuthenticated, async (req, res) => {
-    if (Date.now("GMT+0530") <= new Date(process.env.START_DATE).getTime()) {
+    console.log(Date.now("GMT+0530"), new Date(process.env.START_DATE).getTime(), new Date(process.env.END_TIME).getTime())
+    if ((Date.now("GMT+0530") <= new Date(process.env.START_DATE).getTime()) || (Date.now("GMT+0530") >= new Date(process.env.END_TIME).getTime())) {
         return res.redirect('/');
     }
     if (req.user.plat_banned) {
