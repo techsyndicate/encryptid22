@@ -16,8 +16,9 @@ async function updateLeaderboard() {
     console.log("Leaderboard not updated, too soon");
     return;
   } else {
-    var users = await User.find({ admin: false }).sort({
-      plat_levels_completed: -1,
+    var users = await User.find({ admin: false })
+    users.sort(function (a, b) {
+      return b.plat_levels_completed.length - a.plat_levels_completed.length;
     });
     var file = await ejs.renderFile(
       __dirname + "/../views/pages/leaderboard.ejs",
