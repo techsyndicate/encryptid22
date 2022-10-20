@@ -82,7 +82,7 @@ router.get('/admin/:id', checkAdmin, async (req, res) => {
 })
 
 router.get('/answerlog', checkAdmin, async (req, res) => {
-    var answerlog = await answerSchema.find().limit(200).sort({ date: 1 });
+    var answerlog = await answerSchema.find();
     answerlog = answerlog.reverse();
     res.render('admin/answerlogoverall', { answerlog });
 })
