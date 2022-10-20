@@ -30,7 +30,9 @@ router.post('/submit', checkAuthenticated, async (req, res) => {
         levelNumber: req.user.play_current_level,
         try: req.body.answer,
         user: req.user.username,
-    }).save();
+    }).save().then(async (answer) => {
+        console.log(answer);
+    });
     var level = await levelSchema.findOne({ levelNumber: req.user.play_current_level });
     console.log(req.user.play_current_level, req.body.answer.toLowerCase(), level.answer.toLowerCase());
     if (req.body.answer.toLowerCase() === level.answer.toLowerCase()) {
