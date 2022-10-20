@@ -82,9 +82,8 @@ router.get('/unban/:id', checkAdmin, async (req, res) => {
 })
 
 router.get('/answerlog', checkAdmin, async (req, res) => {
-    var answerlog = await answerSchema.find();
+    var answerlog = await answerSchema.find().limit(100);
     answerlog = answerlog.reverse();
-    console.log(answerlog);
     res.render('admin/answerlogoverall', { answerlog });
 })
 
