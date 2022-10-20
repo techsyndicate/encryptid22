@@ -33,7 +33,8 @@
                     var currentCookie = document.cookie;
                     if (currentCookie != lastCookie) {
                         var parsed = parseCookie(currentCookie);
-                        console.log("Cookie changed!", parsed['<%= level.cookieHint.name %>'], "<%= level.cookieHint.onChangeValue %>");
+                        console.log("Cookie changed!", parsed['<%= level.cookieHint.name %>'],
+                            "<%= level.cookieHint.onChangeValue %>");
                         if (parsed['<%= level.cookieHint.name %>'] == "<%= level.cookieHint.onChangeValue %>") {
                             window.location.href = "<%= level.cookieHint.redirect %>";
                         }
@@ -155,6 +156,13 @@
         document.getElementById("maintext").value = text;
         console.log(text);
     }
+
+    $(document).on("keypress", "input", function (e) {
+        if (e.which == 13) {
+            submit();
+        }
+    });
+
 
     function submit() {
         var maintext = document.getElementById("maintext").value;
