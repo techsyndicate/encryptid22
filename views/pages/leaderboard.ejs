@@ -6,7 +6,11 @@
 
     <% for (i in users){ %>
     <div class="leader-entry">
-        <h3><%= users[i].plat_name %></h3>
+        <% if (users[i].plat_name) { %>
+            <h3><%= users[i].plat_name %></h3>
+        <% }else{ %>
+            <h3><%= users[i].username %></h3>
+        <% } %>
         <p><%= users[i].plat_levels_completed.length %></p>
     </div>
     <% } %>

@@ -59,32 +59,46 @@ router.get('/users', checkAdmin, async (req, res) => {
     res.render('admin/users', { users });
 });
 
-router.get('/ban/:id', checkAdmin, async (req, res) => {
+router.get('/banit/:id', checkAdmin, async (req, res) => {
     var user = await userSchema.findById(req.params.id);
     if (user) {
-        user.banned = true;
+        user.plat_banned = !user.plat_banned;
         await user.save();
-        res.redirect('/admin/users');
+        res.send({ success: true, message: "User ban updated." });
     } else {
         res.send({ success: false, message: "User does not exist." });
     }
 })
 
-router.get('/unban/:id', checkAdmin, async (req, res) => {
+router.get('/admin/:id', checkAdmin, async (req, res) => {
     var user = await userSchema.findById(req.params.id);
     if (user) {
-        user.banned = false;
+        user.admin = !user.admin;
         await user.save();
-        res.redirect('/admin/users');
+        res.send({ success: true, message: "User admin updated." });
     } else {
         res.send({ success: false, message: "User does not exist." });
     }
 })
 
 router.get('/answerlog', checkAdmin, async (req, res) => {
-    var answerlog = await answerSchema.find();
-    console.log(answerlog);
+    var answerlog = await answerSchema.find().limit(200).sort({ date: 1 });
+    answerlog = answerlog.reverse();
     res.render('admin/answerlogoverall', { answerlog });
+})
+
+router.get('/removemultiplesamecompleted', checkAdmin, async (req, res) => {
+    var users = await userSchema.find();
+    for (var i = 0; i < users.length; i++) {
+        var user = users[i];
+        var levels = user.plat_levels_completed;
+        var levels = levels.filter(function (item, pos) {
+            return levels.indexOf(item) == pos;
+        });
+        user.plat_levels_completed = levels;
+        await user.save();
+    }
+    res.send({ success: true, message: "Removed duplicates." });
 })
 
 module.exports = router;
