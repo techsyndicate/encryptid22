@@ -195,7 +195,7 @@ arrowLeft.addEventListener('click',()=>{
 arrowRight.addEventListener('click', ()=>{
   countLogs.push('right')
 })
-arrowUp.addEventListener('click', ()=>{
+start.addEventListener('click', ()=>{
   countLogs.push('start')
   ARRAYEQUAL()
 })
