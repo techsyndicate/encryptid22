@@ -29,7 +29,7 @@ router.post('/submit', checkAuthenticated, async (req, res) => {
         user: req.user.username,
     }).save();
     var level = await levelSchema.findOne({ levelNumber: req.user.play_current_level });
-    console.log(req.user.play_current_level);
+    console.log(req.user.play_current_level, req.body.answer.toLowerCase(), level.answer.toLowerCase());
     if (req.body.answer.toLowerCase() === level.answer.toLowerCase()) {
         req.user.plat_levels_completed.push(req.user.play_current_level);
         req.user.plat_last_completed_time = Date.now("GMT+0530");
@@ -55,18 +55,16 @@ router.post('/submit', checkAuthenticated, async (req, res) => {
             }));
 
             new Promise((resolve, reject) => {
-
-                req.user.plat_levels_unlocked.forEach((element, i) => {
-                    if (req.user.plat_levels_completed.includes(element) || element == null || element == undefined) {
-                        req.user.plat_levels_unlocked.splice(req.user.plat_levels_unlocked.indexOf(element), 1);
-                    }
-                    console.log(i, req.user.plat_levels_unlocked.length, req.user.plat_levels_unlocked)
-                    if (i == req.user.plat_levels_unlocked.length) {
-                        console.log(req.user.plat_levels_unlocked.length);
-                        resolve();
-                        console.log('here')
+                var unlocked_levels = req.user.plat_levels_unlocked.filter(function (element) {
+                    console.log(element);
+                    console.log(element, req.user.plat_levels_completed.includes(element) || element == undefined || element == null);
+                    if (!req.user.plat_levels_completed.includes(element) && (element !== undefined) && (element !== null)) {
+                        return element;
                     }
                 });
+                console.log(unlocked_levels);
+                req.user.plat_levels_unlocked = unlocked_levels;
+                resolve();
             }).then(() => {
                 console.log("hi", req.user.plat_levels_unlocked);
                 req.user.save();
