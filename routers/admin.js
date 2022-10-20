@@ -87,4 +87,18 @@ router.get('/answerlog', checkAdmin, async (req, res) => {
     res.render('admin/answerlogoverall', { answerlog });
 })
 
+router.get('/removemultiplesamecompleted', checkAdmin, async (req, res) => {
+    var users = await userSchema.find();
+    for (var i = 0; i < users.length; i++) {
+        var user = users[i];
+        var levels = user.plat_levels_completed;
+        var levels = levels.filter(function (item, pos) {
+            return levels.indexOf(item) == pos;
+        });
+        user.plat_levels_completed = levels;
+        await user.save();
+    }
+    res.send({ success: true, message: "Removed duplicates." });
+})
+
 module.exports = router;
