@@ -96,7 +96,7 @@ router.get('/select/:id', checkAuthenticated, async (req, res) => {
 });
 
 router.get('/gameboy', checkAuthenticated, (req, res) => {
-    res.render('pages/gameboy')
+    res.render('pages/gameboy', {user: req.user});
 })
 
 module.exports = router;
