@@ -12,6 +12,7 @@ const port = process.env.PORT || 5100,
     leaderboardRouter = require('./routers/leaderboard');
 
 //ejs
+app.use(expressLayouts);
 app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')))
 //mongo
