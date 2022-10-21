@@ -1,24 +1,9 @@
 <div class="navbar">
     <a href="/" class="nav-branding"><img class="logo" src="/ts.png"></a>
     <ul class="nav-menu">
-        <% if (typeof user == "undefined"){ %>
-            <li class="nav-item">
-                <a href="/leaderboard" class="nav-link">Leaderboard</a>
-            </li>
-            <li class="nav-item">
-                <a href="/auth/discord" class="nav-link ">Login</a>
-            </li>
-        <%}else{%>
-            <li class="nav-item">
-                <a href="/play" class="nav-link">Dashboard</a>
-            </li>
-            <li class="nav-item">
-                <a href="/leaderboard" class="nav-link">Leaderboard</a>
-            </li>
-            <li class="nav-item">
-                <a href="/profile" class="nav-link">Profile</a>
-            </li>
-        <% } %>
+        <li class="nav-item">
+            <a href="/leaderboard" class="nav-link">Leaderboard</a>
+        </li>
     </ul>
     <div class="hamburger">
         <span class="bar"></span>
@@ -27,10 +12,6 @@
     </div>
 </div>
 <script>
-    function register() {
-        window.location.href = "/auth/discord";
-    }
-
     const hamburger = document.querySelector(".hamburger");
     const navMenu = document.querySelector(".nav-menu");
     hamburger.addEventListener("click", () => {
@@ -41,5 +22,4 @@
         hamburger.classList.remove("active");
         navMenu.classList.remove("active");
     }))
-
-</script> 
+</script>
